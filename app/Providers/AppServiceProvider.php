@@ -29,17 +29,17 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         // Using a callback ensures that data is retrieved only if it's not already cached
         $menuServices = Cache::remember('menu_services', 60 * 60, function () {
-           // return Service::with('media')->where('status', true)->get();
+            return Service::with('media')->where('status', true)->get();
         });
 
         $testimonials = Cache::remember('testimonials', 60 * 60, function () {
-           // return Testimonial::with('media')->where('status', true)->get();
+            return Testimonial::with('media')->where('status', true)->get();
         });
 
         $films = Cache::remember('films', 60 * 60, function () {
-           // return Film::with(['media'])->where('featured_in_site', true)->orderBy('order', 'desc')->get();
+            return Film::with(['media'])->where('featured_in_site', true)->orderBy('order', 'desc')->get();
         });
-        $websiteInfo = []; //DB::table('websiteinformations')->first();
+        $websiteInfo = DB::table('websiteinformations')->first();
 
         // Sharing the website information across all views
         View::share('websiteInfo', $websiteInfo);
