@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $films = Cache::remember('films', 60 * 60, function () {
            // return Film::with(['media'])->where('featured_in_site', true)->orderBy('order', 'desc')->get();
         });
-        $websiteInfo = DB::table('websiteinformations')->first();
+        $websiteInfo = []; //DB::table('websiteinformations')->first();
 
         // Sharing the website information across all views
         View::share('websiteInfo', $websiteInfo);
